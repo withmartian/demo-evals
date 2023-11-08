@@ -24,7 +24,7 @@ class LangChainLLMCompletionResult(CompletionResult):
 
 class RouterCompletionFn(CompletionFn):
     def __init__(self, llm_kwargs: Optional[dict] = None, **kwargs) -> None:
-        self.router_url = 'https://route.withmartian.com/router-backend2/api/router/'
+        self.router_url = 'https://route.withmartian.com/api/router/'
         self.headers = {
             'Authorization': os.environ.get('MARTIAN_BEARER_TOKEN'),
             'Content-Type': 'application/json'
