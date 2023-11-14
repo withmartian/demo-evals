@@ -24,17 +24,18 @@ class LangChainLLMCompletionResult(CompletionResult):
 
 class RouterCompletionFn(CompletionFn):
     def __init__(self, llm_kwargs: Optional[dict] = None, **kwargs) -> None:
-        self.router_url = 'https://route.withmartian.com/api/router/'
+        self.router_url = 'https://route.withmartian.com/api/router'
         self.headers = {
             'Authorization': os.environ.get('MARTIAN_BEARER_TOKEN'),
             'Content-Type': 'application/json'
         }
 
     def call_router(self, prompt: str) -> str:
-        data = {'conversation': [{'role': 'user', 'content': prompt}]}
+        data = {"conversation": {"turns": [{"role": "user", "content": prompt}]}}
         response = self._post_request(data)
         if 'status_code' in response and response['status_code'] != 200:
             raise Exception('Router error: ' + response['detail'])
+        print(response)
         return response['response']['content']
 
     @retry(stop=stop_after_attempt(3))

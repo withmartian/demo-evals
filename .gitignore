@@ -15,3 +15,4 @@ build
 
 openai-key.txt
 *.code-workspace
+result_tmp.json
