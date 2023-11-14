@@ -5,6 +5,7 @@ import argparse
 import logging
 import shlex
 import sys
+import json
 from typing import Any, Mapping, Optional, Union, cast
 
 import openai
@@ -229,6 +230,9 @@ def run(args: OaiEvalArguments, registry: Optional[Registry] = None) -> str:
     logger.info("Final report:")
     for key, value in result.items():
         logger.info(f"{key}: {value}")
+
+    with open("./result_tmp.json", "w") as f:
+        json.dump(result, f)
     return run_spec.run_id
 
 
