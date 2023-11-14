@@ -1,0 +1,6 @@
+martian_router:
+  class: evals.completion_fns.martian_fns:RouterCompletionFn
+  args:
+    provider: Martian
+    llm_kwargs:
+      model_name: router1
